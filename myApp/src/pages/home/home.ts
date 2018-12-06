@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { TopPage } from "../top/top";
+import { WebviewPage } from "../webview/webview";
 
 @Component({
     selector: 'page-home',
@@ -15,5 +16,9 @@ export class HomePage {
 
     logout(): void {
         this.navCtrl.setRoot(TopPage);
+    }
+
+    goToWebView(): void {
+        this.navCtrl.push(WebviewPage);
     }
 }
