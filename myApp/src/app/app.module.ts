@@ -10,13 +10,15 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { TopPage } from "../pages/top/top";
 import { WebviewPage } from "../pages/webview/webview";
+import { ErrorMessage } from "../pages/common/error.message/error.message";
 
 @NgModule({
     declarations: [
         MyApp,
         HomePage,
         TopPage,
-        WebviewPage
+        WebviewPage,
+        ErrorMessage
     ],
     imports: [
         BrowserModule,
@@ -34,7 +36,7 @@ import { WebviewPage } from "../pages/webview/webview";
         StatusBar,
         SplashScreen,
         { provide: ErrorHandler, useClass: IonicErrorHandler },
-        InAppBrowser
+        InAppBrowser,
     ]
 })
 export class AppModule {

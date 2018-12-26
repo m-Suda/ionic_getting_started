@@ -6,20 +6,28 @@
 
     <form [formGroup]="myForm" (ngSubmit)="formSubmit()">
 
-        <input [formControl]="userId" placeholder="ユーザーID">
-        <span *ngIf="(userId.dirty || userId.touched) && userId.errors?.required">ユーザーIDは必須です。</span>
-        <span *ngIf="userId.errors?.maxlength">ユーザーIDは10文字以内で入力してください。</span>
+        <div class="input-area">
+            <input [formControl]="userId" placeholder="ユーザーID">
+            <error-message [control]="userId"></error-message>
+        </div>
 
-        <input [formControl]="password" placeholder="パスワード">
-        <span *ngIf="(password.dirty || password.touched) && password.errors?.required">パスワードは必須です。</span>
-        <span *ngIf="password.errors?.maxlength">パスワードは16文字以内で入力してください。</span>
+        <div class="input-area">
+            <input [formControl]="password" placeholder="パスワード">
+            <error-message [control]="password"></error-message>
+        </div>
+
+        <div class="input-area">
+            <input [formControl]="email" placeholder="メールアドレス">
+            <error-message [control]="email"></error-message>
+        </div>
+
+        <div class="input-area">
+            <input [formControl]="code" placeholder="コード">
+            <error-message [control]="code"></error-message>
+        </div>
 
         <button type="submit" [disabled]="myForm.invalid" ion-button block color="dark">ログイン</button>
 
     </form>
-
-    <ion-footer text-center>
-        アカウントをお持ちでない場合 登録はこちら
-    </ion-footer>
 
 </ion-content>

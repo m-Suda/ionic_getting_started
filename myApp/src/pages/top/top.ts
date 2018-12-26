@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 
+import { CustomValidation } from "../../services/custom.validation";
 
 @IonicPage()
 @Component({
@@ -18,27 +19,37 @@ export class TopPage {
         Validators.required,
         Validators.maxLength(16)
     ]);
+    email = new FormControl('', [
+        Validators.required,
+        CustomValidation.emailValidator
+    ]);
+    code = new FormControl('', [
+        Validators.required,
+        CustomValidation.numericValidator
+    ]);
+
 
     myForm: FormGroup = this.builder.group({
         userId: this.userId,
-        password: this.password
-    })
+        password: this.password,
+        email: this.email,
+        code: this.code
+    });
 
 
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
-        private builder: FormBuilder
+        private builder: FormBuilder,
     ) {
     }
 
     formSubmit(): void {
-        console.log(`ユーザーID(value) is ...${this.userId.value}`);    //....... valueが表示される
-        console.log(`ユーザーID(no value) is ...${this.userId}`);       //....... [object object]が表示される
-        console.log(`パスワード(value) is ...${this.password.value}`);  //....... valueが表示される
-        console.log(`パスワード(no value) is ...${this.password}`);     //....... [object object]が表示される
-        console.log(`All value ...${this.myForm.value}`);              //....... [object object]が表示される
-        console.log(`All value(no value) ...${this.myForm}`);          //....... [object object]が表示される
+        console.log(`ユーザーID is ...${this.userId.value}`);    //....... valueが表示される
+        console.log(`パスワード is ...${this.password.value}`);  //....... valueが表示される
+        console.log(`メールアドレス is ...${this.email.value}`);  //....... valueが表示される
+        console.log(`コード is ...${this.code.value}`);  //....... valueが表示される
+
     }
 
 }
