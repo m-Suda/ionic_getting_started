@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 
 import { CustomValidation } from "../../services/custom.validation";
+import { PhoneNumberService } from "../../services/phone-number.service";
 
 @IonicPage()
 @Component({
@@ -27,13 +28,18 @@ export class TopPage {
         Validators.required,
         CustomValidation.numericValidator
     ]);
+    phoneNumber = new FormControl('', [
+        Validators.required,
+        CustomValidation.numericValidator
+    ]);
 
 
     myForm: FormGroup = this.builder.group({
-        userId: this.userId,
-        password: this.password,
+        userId: ['', [ Validators.required, Validators.maxLength(10) ]],
+        password: ['', [ Validators.required, Validators.maxLength(16) ]],
         email: this.email,
-        code: this.code
+        code: this.code,
+        phoneNumber: this.phoneNumber
     });
 
 
@@ -41,6 +47,7 @@ export class TopPage {
         public navCtrl: NavController,
         public navParams: NavParams,
         private builder: FormBuilder,
+        // private PNService: PhoneNumberService
     ) {
     }
 
@@ -49,7 +56,7 @@ export class TopPage {
         console.log(`パスワード is ...${this.password.value}`);  //....... valueが表示される
         console.log(`メールアドレス is ...${this.email.value}`);  //....... valueが表示される
         console.log(`コード is ...${this.code.value}`);  //....... valueが表示される
-
+        console.log(`電話番号 is ...${PhoneNumberService.formatToTypeNATIONAL(this.phoneNumber.value)}`);  //....... valueが表示される
     }
 
 }
