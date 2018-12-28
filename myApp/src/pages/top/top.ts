@@ -35,8 +35,8 @@ export class TopPage {
 
 
     myForm: FormGroup = this.builder.group({
-        userId: ['', [ Validators.required, Validators.maxLength(10) ]],
-        password: ['', [ Validators.required, Validators.maxLength(16) ]],
+        userId: this.userId,
+        password: this.password,
         email: this.email,
         code: this.code,
         phoneNumber: this.phoneNumber
@@ -47,7 +47,7 @@ export class TopPage {
         public navCtrl: NavController,
         public navParams: NavParams,
         private builder: FormBuilder,
-        // private PNService: PhoneNumberService
+        // private phoneNumberService: PhoneNumberService
     ) {
     }
 

@@ -5,31 +5,15 @@ import PhoneNumber = libphonenumber.PhoneNumber;
 
 export class PhoneNumberService {
 
-    private util: PhoneNumberUtil;
+    static util: PhoneNumberUtil = libphonenumber.PhoneNumberUtil.getInstance();
 
-    constructor() {
-        this.util = libphonenumber.PhoneNumberUtil.getInstance();
+    private static phoneNumberParseJP(phoneNumber: string): PhoneNumber {
+
+        return PhoneNumberService.util.parse(phoneNumber, 'JP');
     }
 
-    private phoneNumberParseJP(phoneNumber: string): PhoneNumber {
+    static formatToTypeNATIONAL(phoneNumber: string): string {
 
-        return this.util.parse(phoneNumber, 'JP');
+        return PhoneNumberService.util.format(this.phoneNumberParseJP(phoneNumber), PhoneNumberFormat.NATIONAL);
     }
-
-    formatToTypeNATIONAL(phoneNumber: string): string {
-
-        return this.util.format(this.phoneNumberParseJP(phoneNumber), PhoneNumberFormat.NATIONAL);
-    }
-
-    // static util: PhoneNumberUtil = libphonenumber.PhoneNumberUtil.getInstance();
-    //
-    // private static phoneNumberParseJP(phoneNumber: string): PhoneNumber {
-    //
-    //     return PhoneNumberService.util.parse(phoneNumber, 'JP');
-    // }
-    //
-    // static formatToTypeNATIONAL(phoneNumber: string): string {
-    //
-    //     return PhoneNumberService.util.format(this.phoneNumberParseJP(phoneNumber), PhoneNumberFormat.NATIONAL);
-    // }
 }
