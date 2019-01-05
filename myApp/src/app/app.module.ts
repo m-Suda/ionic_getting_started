@@ -36,7 +36,7 @@ import { ErrorMessage } from "../pages/common/error.message/error.message";
         StatusBar,
         SplashScreen,
         { provide: ErrorHandler, useClass: IonicErrorHandler },
-        InAppBrowser,
+        InAppBrowser
     ]
 })
 export class AppModule {
