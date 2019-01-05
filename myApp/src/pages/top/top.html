@@ -1,7 +1,7 @@
 <ion-content padding-horizontal>
 
     <div id="top-img">
-        <img src="../../assets/imgs/the-alley.png">
+        <img src="../../assets/imgs/ionic.png">
     </div>
 
     <form [formGroup]="myForm" (ngSubmit)="formSubmit()">
@@ -12,7 +12,8 @@
         </div>
 
         <div class="input-area">
-            <input [formControl]="password" placeholder="パスワード">
+            <input type={{passwordType}} [formControl]="password" placeholder="パスワード">
+            <ion-icon name={{iconName}} (click)="togglePassword()"></ion-icon>
             <error-message [control]="password"></error-message>
         </div>
 

@@ -28,6 +28,9 @@ export class TopPage {
         CustomValidation.numericValidator
     ]);
 
+    iconName: string = 'eye';
+    passwordType: string = 'password';
+    isHide: boolean = true;
 
     myForm: FormGroup = this.builder.group({
         userId: this.userId,
@@ -36,12 +39,24 @@ export class TopPage {
         code: this.code
     });
 
-
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
         private builder: FormBuilder,
-    ) {
+    ) { }
+
+    togglePassword() {
+
+        this.isHide = !this.isHide;
+
+        if (!this.isHide) {
+            this.passwordType = 'text';
+            this.iconName = 'eye-off';
+            return;
+        }
+
+        this.passwordType = 'password';
+        this.iconName = 'eye';
     }
 
     formSubmit(): void {
