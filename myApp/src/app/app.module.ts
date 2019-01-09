@@ -6,6 +6,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { InAppBrowser } from "@ionic-native/in-app-browser";
 
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule
+} from "@angular/material";
+import { ComponentsModule } from "../components/components.module";
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { TopPage } from "../pages/top/top";
@@ -23,7 +32,13 @@ import { ErrorMessage } from "../pages/common/error.message/error.message";
     imports: [
         BrowserModule,
         IonicModule.forRoot(MyApp),
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatIconModule,
+        ComponentsModule
     ],
     bootstrap: [ IonicApp ],
     entryComponents: [

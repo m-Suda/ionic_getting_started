@@ -6,33 +6,39 @@
 
     <form [formGroup]="myForm" (ngSubmit)="formSubmit()">
 
-        <div class="input-area">
-            <input [formControl]="userId" placeholder="ユーザーID">
-            <error-message [control]="userId"></error-message>
-        </div>
+        <mat-form-field>
+            <input matInput placeholder="input">
+        </mat-form-field>
 
-        <div class="input-area">
-            <input type={{passwordType}} [formControl]="password" placeholder="パスワード">
-            <ion-icon name={{iconName}} (click)="togglePassword()"></ion-icon>
-            <error-message [control]="password"></error-message>
-        </div>
+        <amazing-button buttonName="これはボタンですお！" buttonColor="black" (buttonClicked)="logMessage()"></amazing-button>
 
-        <div class="input-area">
-            <input [formControl]="email" placeholder="メールアドレス">
-            <error-message [control]="email"></error-message>
-        </div>
+        <!--<div class="input-area">-->
+            <!--<input [formControl]="userId" placeholder="ユーザーID">-->
+            <!--<error-message [control]="userId"></error-message>-->
+        <!--</div>-->
 
-        <div class="input-area">
-            <input [formControl]="code" placeholder="コード">
-            <error-message [control]="code"></error-message>
-        </div>
+        <!--<div class="input-area">-->
+            <!--<input type={{passwordType}} [formControl]="password" placeholder="パスワード">-->
+            <!--<ion-icon name={{iconName}} (click)="togglePassword()"></ion-icon>-->
+            <!--<error-message [control]="password"></error-message>-->
+        <!--</div>-->
 
-        <div class="input-area">
-            <input [formControl]="phoneNumber" placeholder="電話番号">
-            <error-message [control]="phoneNumber"></error-message>
-        </div>
+        <!--<div class="input-area">-->
+            <!--<input [formControl]="email" placeholder="メールアドレス">-->
+            <!--<error-message [control]="email"></error-message>-->
+        <!--</div>-->
 
-        <button type="submit" [disabled]="myForm.invalid" ion-button block color="dark">ログイン</button>
+        <!--<div class="input-area">-->
+            <!--<input [formControl]="code" placeholder="コード">-->
+            <!--<error-message [control]="code"></error-message>-->
+        <!--</div>-->
+
+        <!--<div class="input-area">-->
+            <!--<input [formControl]="phoneNumber" placeholder="電話番号">-->
+            <!--<error-message [control]="phoneNumber"></error-message>-->
+        <!--</div>-->
+
+        <!--<button type="submit" [disabled]="myForm.invalid" ion-button block color="dark">ログイン</button>-->
 
     </form>
 

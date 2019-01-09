@@ -73,4 +73,18 @@ export class TopPage {
         console.log(`電話番号 is ...${PhoneNumberService.formatToTypeNATIONAL(this.phoneNumber.value)}`);  //....... valueが表示される
     }
 
+    // 確認用。5秒後にHelloWorld!が出力される。
+    logMessage() {
+
+        console.log('Wait for 5 second.');
+
+        return new Promise(resolve => {
+            setTimeout(() => {
+                console.log('Hello world!');
+                resolve();
+            }, 5000);
+        });
+
+    }
+
 }
