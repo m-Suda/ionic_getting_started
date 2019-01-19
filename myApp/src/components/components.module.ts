@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { AmazingButtonComponent } from './amazing-button/amazing-button';
-import { EmailFormComponent } from './email-form/email-form';
+
 @NgModule({
-	declarations: [AmazingButtonComponent,
-    EmailFormComponent],
-	imports: [],
-	exports: [AmazingButtonComponent,
-    EmailFormComponent]
+    declarations: [
+        AmazingButtonComponent,
+    ],
+    imports: [],
+    exports: [
+        AmazingButtonComponent,
+    ]
 })
-export class ComponentsModule {}
+export class ComponentsModule {
+}
