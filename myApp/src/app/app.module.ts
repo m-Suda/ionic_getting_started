@@ -27,7 +27,7 @@ import { ErrorMessage } from "../pages/common/error.message/error.message";
         HomePage,
         TopPage,
         WebviewPage,
-        ErrorMessage
+        ErrorMessage,
     ],
     imports: [
         BrowserModule,
