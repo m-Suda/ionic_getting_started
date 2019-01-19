@@ -12,7 +12,9 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "target": "es5",
-    "typeRoots": ["types"]
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   },
   "include": [
     "src/**/*.ts"
