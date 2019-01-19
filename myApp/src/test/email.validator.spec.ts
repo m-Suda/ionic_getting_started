@@ -1,79 +1,84 @@
 import { EmailValidator } from "../services/validator/email.validator";
 import { FormControl } from "@angular/forms";
 
-describe('EmailValidatorTest', () => {
+describe('Emailバリデータテスト始まるよ！', () => {
 
-    describe('Common Test', () => {
+    describe('共通のテストだよ！', () => {
 
-        it('IllegalChar has to Local', () => {
+        it('ローカル部分に禁則文字を入れたよ', () => {
             const ctrl = new FormControl('localCheck%@domainCheck.com');
             expect(EmailValidator.commonCheck(ctrl)).toEqual({ 'illegalCharacter': true });
         });
 
-        it('IllegalChar has to Domain', () => {
+        it('ドメイン部分に禁則文字を入れたよ', () => {
             const ctrl = new FormControl('localCheck@%domainCheck.com');
             expect(EmailValidator.commonCheck(ctrl)).toEqual({ 'illegalCharacter': true });
         });
 
-        it('Dot Local continuously exists', () => {
+        it('ローカル部分に.を連続で入れたよ', () => {
             const ctrl = new FormControl('local..localCheck@domainCheck.com');
             expect(EmailValidator.commonCheck(ctrl)).toEqual({ 'email': true });
         });
 
-        it('Dot Domain continuously exists', () => {
+        it('ドメイン部分に.を連続で入れたよ', () => {
             const ctrl = new FormControl('localCheck@domainCheck..com');
             expect(EmailValidator.commonCheck(ctrl)).toEqual({ 'email': true });
         });
 
-        it('AtSign continuously exists', () => {
+        it('@を連続で入れたよ', () => {
             const ctrl = new FormControl('local.localCheck@@domainCheck.com');
             expect(EmailValidator.commonCheck(ctrl)).toEqual({ 'email': true });
         });
 
-        it('No IllegalChar', () => {
+        it('適切なメールアドレスだよ', () => {
             const ctrl = new FormControl('localCheck@domainCheck.com');
             expect(EmailValidator.commonCheck(ctrl)).toBeNull();
         });
 
     });
 
-    describe('Local Test', () => {
+    describe('ローカル部分だよ', () => {
 
-        it('Dot has to first', () => {
+        it('先頭に.を入れたよ', () => {
             const ctrl = new FormControl('.localCheck@domainCheck.com');
             expect(EmailValidator.localCheck(ctrl)).toEqual({ 'email': true });
         });
 
-        it('Dot just before AtSign', () => {
+        it('先頭に@を入れたよ', () => {
+            const ctrl = new FormControl('@local@domainCheck.com');
+            expect(EmailValidator.localCheck(ctrl)).toEqual({ 'email': true });
+        });
+
+        it('@の直前に.を入れたよ', () => {
             const ctrl = new FormControl('local.@domainCheck.com');
             expect(EmailValidator.localCheck(ctrl)).toEqual({ 'email': true });
         });
 
-        it('Position appropriate Dot', () => {
+        it('適切なメールアドレスだよ', () => {
             const ctrl = new FormControl('local.localCheck@domainCheck.com');
             expect(EmailValidator.localCheck(ctrl)).toBeNull();
         });
 
     });
 
-    describe('Domain Test', () => {
+    describe('ドメイン部分だよ', () => {
 
-        it('Domain AtSign Exists', () => {
+        it('ドメイン部分に@を2つ入れたよ その1', () => {
             const ctrl = new FormControl('localCheck@domain@example.com');
             expect(EmailValidator.domainCheck(ctrl)).toEqual({ 'email': true });
         });
 
-        it('AtSign continuously exists', () => {
+        it('ドメイン部分に@を2つ入れたよ その2', () => {
             const ctrl = new FormControl('localCheck@@example.com');
             expect(EmailValidator.domainCheck(ctrl)).toEqual({ 'email': true });
         });
 
-        it('Dot immediately after AtSign', () => {
+        it('@の直後に.を入れたよ', () => {
             const ctrl = new FormControl('localCheck@.domain.com');
             expect(EmailValidator.domainCheck(ctrl)).toEqual({ 'email': true });
         });
 
-        it('Appropriate Domain', () => {
+        it('適切なメールアドレスだよ', () => {
             const ctrl = new FormControl('local@domain.com');
             expect(EmailValidator.domainCheck(ctrl)).toBeNull();
         });
