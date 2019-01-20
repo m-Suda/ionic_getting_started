@@ -7,18 +7,18 @@
     <form [formGroup]="myForm" (ngSubmit)="formSubmit()">
 
         <div class="input-area">
-            <input [formControl]="userId" placeholder="ユーザーID">
+            <input [formControl]="userId" placeholder="ユーザーID" (keyup)="isErrorExists()">
             <error-message [control]="userId"></error-message>
         </div>
 
         <div class="input-area">
-            <input type={{passwordType}} [formControl]="password" placeholder="パスワード">
+            <input type={{passwordType}} [formControl]="password" placeholder="パスワード" (keyup)="isErrorExists()">
             <!--<ion-icon name={{iconName}} (click)="togglePassword()"></ion-icon>-->
             <error-message [control]="password"></error-message>
         </div>
 
         <div class="input-area">
-            <input [formControl]="email" placeholder="メールアドレス">
+            <input [formControl]="email" placeholder="メールアドレス" (keyup)="isErrorExists()">
             <error-message [control]="email"></error-message>
         </div>
 
@@ -32,7 +32,7 @@
         <!--<error-message [control]="phoneNumber"></error-message>-->
         <!--</div>-->
 
-        <button type="submit" [disabled]="myForm.invalid" ion-button block color="dark">ログイン</button>
+        <button type="submit" [disabled]="isDisabled" ion-button block color="dark">ログイン</button>
 
     </form>
 

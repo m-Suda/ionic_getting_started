@@ -13,6 +13,8 @@ import { EmailValidator } from "../../services/validator/email.validator";
 })
 export class TopPage {
 
+    isDisabled: boolean = true;
+
     userId = new FormControl('', [
         Validators.required,
         Validators.maxLength(10)
@@ -38,7 +40,7 @@ export class TopPage {
 
     iconName: string = 'eye';
     passwordType: string = 'password';
-    isHide: boolean = true;
+    // isHide: boolean = true;
 
     myForm: FormGroup = this.builder.group({
         userId: this.userId,
@@ -69,10 +71,31 @@ export class TopPage {
     //     this.iconName = 'eye';
     // }
 
+    /**
+     * メモ
+     * ・エラーメッセージ格納処理よりも先に呼ばれてしまう
+     * ・ボタンの活性非活性のタイミングが全て1テンポ遅い
+     * ・keyupイベントにすることでできた。がスマホでやった時どうなるかはわからない…
+     * ・ngModelChangeだとコンポーネント側の処理が先に呼ばれる。keyupだとバリデーションが先に呼ばれる。
+     */
+    isErrorExists() {
+
+        // FormGroupのチェック状態を確認
+        if (this.myForm.invalid) {
+            this.isDisabled = true;
+            return;
+        }
+
+        // 設定したcheckを通過していたらemailの形式チェックを行う。
+        this.isDisabled = !!(!this.myForm.controls[ 'email' ].value.match(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/));
+
+    }
+
     formSubmit(): void {
         console.log(`ユーザーID is ...${this.userId.value}`);    //....... valueが表示される
         console.log(`パスワード is ...${this.password.value}`);  //....... valueが表示される
         console.log(`メールアドレス is ...${this.email.value}`);  //....... valueが表示される
+        console.log(`FormGroup is ... ${this.myForm}`);
         // console.log(`コード is ...${this.code.value}`);  //....... valueが表示される
         // console.log(`電話番号 is ...${PhoneNumberService.formatToTypeNATIONAL(this.phoneNumber.value)}`);  //....... valueが表示される
     }
